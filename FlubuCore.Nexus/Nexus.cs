@@ -6,18 +6,27 @@ namespace FlubuCore.Nexus
 {
     using FlubuCore.Infrastructure;
 
+    using Microsoft.Extensions.DependencyInjection;
+
     public class Nexus
     {
+        private IServiceProvider serviceProvider;
+
+        public Nexus(IServiceProvider serviceProvider)
+        {
+            this.serviceProvider = serviceProvider;
+        }
+
         /// <summary>
         /// Downloads Asset from nexus repository.
         /// </summary>
+        /// <param name="nexusBaseUrl">base url to the nexus repository</param>
         /// <param name="repository">Name of the nexus repository.</param>
         /// <param name="group">Nexus repository group.</param>
-        /// <param name="name">Name of the asset to be downloaded.</param>
         /// <returns></returns>
-        public NexusDownloadAssetTask DownloadAsset(string nexusBaseUrl, string repository, string group, string name)
+        public FindLatestVersionInGroupTask FindLatestVersionInGroup(string nexusBaseUrl, string repository, string group)
         {
-            return new NexusDownloadAssetTask(new HttpClientFactory(), nexusBaseUrl, repository, group, name);
+            return new FindLatestVersionInGroupTask(serviceProvider.GetService<IHttpClientFactory>(), nexusBaseUrl, repository, group);
         }
     }
 }

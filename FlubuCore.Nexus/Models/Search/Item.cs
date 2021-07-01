@@ -1,4 +1,4 @@
-﻿namespace FlubuCore.Nexus.Models
+﻿namespace FlubuCore.Nexus.Models.Search
 {
     using System;
     using System.Collections.Generic;

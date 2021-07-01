@@ -1,3 +1,5 @@
 BuildScript/
 FlubuCore.Nexus/obj/
 .vs/
+FlubuCore.Nexus/bin/
+output/
