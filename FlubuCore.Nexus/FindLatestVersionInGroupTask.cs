@@ -21,9 +21,7 @@ namespace FlubuCore.Nexus
         private readonly string _nexusBaseUrl;
 
         private readonly string _repository;
-
-        private readonly string _group;
-
+        private readonly string group;
         private bool _versionAsSubGroup;
 
         private string _returnItemsWithExtension;
@@ -31,7 +29,7 @@ namespace FlubuCore.Nexus
         public FindLatestVersionInGroupTask(string nexusBaseUrl, string repository, string group)
         { _nexusBaseUrl = nexusBaseUrl;
             _repository = repository;
-            _group = @group;
+            this.group = group;
         }
 
         /// <summary>

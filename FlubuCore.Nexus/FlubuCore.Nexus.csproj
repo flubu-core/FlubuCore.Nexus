@@ -5,9 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FlubuCore" Version="6.1.4" />
-    <PackageReference Include="Flurl.Http" Version="3.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="FlubuCore" Version="6.2.0" />
+    <PackageReference Include="Flurl.Http" Version="3.2.0" />   
   </ItemGroup>
 
 </Project>
