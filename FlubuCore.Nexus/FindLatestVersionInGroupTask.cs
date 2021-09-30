@@ -21,7 +21,7 @@ namespace FlubuCore.Nexus
         private readonly string _nexusBaseUrl;
 
         private readonly string _repository;
-        private readonly string group;
+        private readonly string _group;
         private bool _versionAsSubGroup;
 
         private string _returnItemsWithExtension;
@@ -29,8 +29,10 @@ namespace FlubuCore.Nexus
         public FindLatestVersionInGroupTask(string nexusBaseUrl, string repository, string group)
         { _nexusBaseUrl = nexusBaseUrl;
             _repository = repository;
-            this.group = group;
+            this._group = group;
         }
+
+        public override string TaskName => $"Nexus.{nameof(FindLatestVersionInGroupTask)}";
 
         /// <summary>
         /// When applied latest version is searched in subgroup. Following format for group must be used in nexus: /{group}/{version} otherwise search wont work.
@@ -77,7 +79,7 @@ namespace FlubuCore.Nexus
                 if (searchResult == null)
                 {
                     searchResult = await _nexusBaseUrl.AppendPathSegment("service/rest/v1/search")
-                                       .SetQueryParams(new { repository = _repository, })
+                                       .SetQueryParams(new { repository = _repository })
                                        .GetJsonAsync<SearchResponse>();
                 }
                 else
@@ -105,7 +107,7 @@ namespace FlubuCore.Nexus
             }
 
             var latestItems = await _nexusBaseUrl.AppendPathSegment("service/rest/v1/search")
-                                  .SetQueryParams(new { repository = "Aeoi_releases", group = $"/{_group}/{latestVersion.ToString()}" })
+                                  .SetQueryParams(new { repository = _repository, group = $"/{_group}/{latestVersion.ToString()}" })
                                   .GetJsonAsync<SearchResponse>();
 
             if (!string.IsNullOrEmpty(_returnItemsWithExtension))

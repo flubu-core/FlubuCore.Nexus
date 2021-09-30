@@ -3,3 +3,6 @@ FlubuCore.Nexus/obj/
 .vs/
 FlubuCore.Nexus/bin/
 output/
+.idea/
+FlubuCore.Nexus.Sample/bin/
+FlubuCore.Nexus.Sample/obj/

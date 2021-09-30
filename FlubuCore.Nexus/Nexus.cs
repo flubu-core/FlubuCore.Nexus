@@ -10,13 +10,6 @@ namespace FlubuCore.Nexus
 
     public class Nexus
     {
-        private IServiceProvider serviceProvider;
-
-        public Nexus(IServiceProvider serviceProvider)
-        {
-            this.serviceProvider = serviceProvider;
-        }
-
         /// <summary>
         /// Downloads Asset from nexus repository.
         /// </summary>
@@ -26,7 +19,7 @@ namespace FlubuCore.Nexus
         /// <returns></returns>
         public FindLatestVersionInGroupTask FindLatestVersionInGroup(string nexusBaseUrl, string repository, string group)
         {
-            return new FindLatestVersionInGroupTask(serviceProvider.GetService<IHttpClientFactory>(), nexusBaseUrl, repository, group);
+            return new FindLatestVersionInGroupTask(nexusBaseUrl, repository, group);
         }
     }
 }
